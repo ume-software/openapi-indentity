@@ -26,6 +26,100 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
+ * @interface DefaultPagingReponseSchema
+ */
+export interface DefaultPagingReponseSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchema
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {DefaultPagingReponseSchemaPagination}
+     * @memberof DefaultPagingReponseSchema
+     */
+    'pagination'?: DefaultPagingReponseSchemaPagination;
+    /**
+     * 
+     * @type {DefaultPagingReponseSchemaResults}
+     * @memberof DefaultPagingReponseSchema
+     */
+    'results'?: DefaultPagingReponseSchemaResults;
+}
+/**
+ * 
+ * @export
+ * @interface DefaultPagingReponseSchemaPagination
+ */
+export interface DefaultPagingReponseSchemaPagination {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchemaPagination
+     */
+    'currentPage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchemaPagination
+     */
+    'nextPage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchemaPagination
+     */
+    'prevPage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchemaPagination
+     */
+    'limit'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DefaultPagingReponseSchemaResults
+ */
+export interface DefaultPagingReponseSchemaResults {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultPagingReponseSchemaResults
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof DefaultPagingReponseSchemaResults
+     */
+    'rows'?: Array<any>;
+}
+/**
+ * 
+ * @export
+ * @interface DefaultReponseSchema
+ */
+export interface DefaultReponseSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefaultReponseSchema
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {object}
+     * @memberof DefaultReponseSchema
+     */
+    'results'?: object;
+}
+/**
+ * 
+ * @export
  * @interface LoginRequestSchema
  */
 export interface LoginRequestSchema {
@@ -50,14 +144,33 @@ export interface LoginRequestSchema {
 export interface LoginResponseSchema {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof LoginResponseSchema
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {LoginResponseSchemaResults}
+     * @memberof LoginResponseSchema
+     */
+    'results'?: LoginResponseSchemaResults;
+}
+/**
+ * 
+ * @export
+ * @interface LoginResponseSchemaResults
+ */
+export interface LoginResponseSchemaResults {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginResponseSchemaResults
      */
     'accessToken'?: string;
     /**
      * 
      * @type {string}
-     * @memberof LoginResponseSchema
+     * @memberof LoginResponseSchemaResults
      */
     'refreshToken'?: string;
 }
@@ -69,63 +182,164 @@ export interface LoginResponseSchema {
 export interface RegisterRequestSchema {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof RegisterRequestSchema
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {RegisterRequestSchemaResults}
+     * @memberof RegisterRequestSchema
+     */
+    'results'?: RegisterRequestSchemaResults;
+}
+/**
+ * 
+ * @export
+ * @interface RegisterRequestSchemaResults
+ */
+export interface RegisterRequestSchemaResults {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterRequestSchemaResults
      */
     'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'username'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'password'?: string;
     /**
      * 
      * @type {number}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'dob'?: number;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
-    'gender'?: RegisterRequestSchemaGenderEnum;
+    'gender'?: RegisterRequestSchemaResultsGenderEnum;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'email'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'avatar'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchema
+     * @memberof RegisterRequestSchemaResults
      */
     'phone'?: string;
 }
 
-export const RegisterRequestSchemaGenderEnum = {
+export const RegisterRequestSchemaResultsGenderEnum = {
     Male: 'MALE',
     Famle: 'FAMLE',
     Orther: 'ORTHER',
     Private: 'PRIVATE'
 } as const;
 
-export type RegisterRequestSchemaGenderEnum = typeof RegisterRequestSchemaGenderEnum[keyof typeof RegisterRequestSchemaGenderEnum];
+export type RegisterRequestSchemaResultsGenderEnum = typeof RegisterRequestSchemaResultsGenderEnum[keyof typeof RegisterRequestSchemaResultsGenderEnum];
 
+/**
+ * 
+ * @export
+ * @interface UserPagingReponseSchema
+ */
+export interface UserPagingReponseSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserPagingReponseSchema
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {DefaultPagingReponseSchemaPagination}
+     * @memberof UserPagingReponseSchema
+     */
+    'pagination'?: DefaultPagingReponseSchemaPagination;
+    /**
+     * 
+     * @type {UserPagingReponseSchemaResults}
+     * @memberof UserPagingReponseSchema
+     */
+    'results'?: UserPagingReponseSchemaResults;
+}
+/**
+ * 
+ * @export
+ * @interface UserPagingReponseSchemaResults
+ */
+export interface UserPagingReponseSchemaResults {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserPagingReponseSchemaResults
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {Array<UserPagingReponseSchemaResultsRowsInner>}
+     * @memberof UserPagingReponseSchemaResults
+     */
+    'rows'?: Array<UserPagingReponseSchemaResultsRowsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface UserPagingReponseSchemaResultsRowsInner
+ */
+export interface UserPagingReponseSchemaResultsRowsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserPagingReponseSchemaResultsRowsInner
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserPagingReponseSchemaResultsRowsInner
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UserResponseSchema
+ */
+export interface UserResponseSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserResponseSchema
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserResponseSchema
+     */
+    'name'?: string;
+}
 
 /**
  * AuthApi - axios parameter creator
@@ -139,8 +353,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLoginInAppV1: async (loginRequestSchema?: LoginRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/login`;
+        userLoginInApp: async (loginRequestSchema?: LoginRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/auth/login`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -172,8 +386,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userRegisterInAppV1: async (registerRequestSchema?: RegisterRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/register`;
+        userRegisterInApp: async (registerRequestSchema?: RegisterRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/auth/register`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -215,8 +429,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userLoginInAppV1(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userLoginInAppV1(loginRequestSchema, options);
+        async userLoginInApp(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userLoginInApp(loginRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -225,8 +439,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userRegisterInAppV1(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userRegisterInAppV1(registerRequestSchema, options);
+        async userRegisterInApp(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userRegisterInApp(registerRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -245,8 +459,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLoginInAppV1(loginRequestSchema?: LoginRequestSchema, options?: any): AxiosPromise<void> {
-            return localVarFp.userLoginInAppV1(loginRequestSchema, options).then((request) => request(axios, basePath));
+        userLoginInApp(loginRequestSchema?: LoginRequestSchema, options?: any): AxiosPromise<LoginResponseSchema> {
+            return localVarFp.userLoginInApp(loginRequestSchema, options).then((request) => request(axios, basePath));
         },
         /**
          * Register
@@ -254,8 +468,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userRegisterInAppV1(registerRequestSchema?: RegisterRequestSchema, options?: any): AxiosPromise<void> {
-            return localVarFp.userRegisterInAppV1(registerRequestSchema, options).then((request) => request(axios, basePath));
+        userRegisterInApp(registerRequestSchema?: RegisterRequestSchema, options?: any): AxiosPromise<void> {
+            return localVarFp.userRegisterInApp(registerRequestSchema, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -273,7 +487,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    userLoginInAppV1(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig): AxiosPromise<void>;
+    userLoginInApp(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig): AxiosPromise<LoginResponseSchema>;
 
     /**
      * Register
@@ -282,7 +496,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    userRegisterInAppV1(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig): AxiosPromise<void>;
+    userRegisterInApp(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig): AxiosPromise<void>;
 
 }
 
@@ -300,8 +514,8 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public userLoginInAppV1(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig) {
-        return AuthApiFp(this.configuration).userLoginInAppV1(loginRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public userLoginInApp(loginRequestSchema?: LoginRequestSchema, options?: AxiosRequestConfig) {
+        return AuthApiFp(this.configuration).userLoginInApp(loginRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -311,8 +525,278 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public userRegisterInAppV1(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig) {
-        return AuthApiFp(this.configuration).userRegisterInAppV1(registerRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public userRegisterInApp(registerRequestSchema?: RegisterRequestSchema, options?: AxiosRequestConfig) {
+        return AuthApiFp(this.configuration).userRegisterInApp(registerRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * DefaultApi - axios parameter creator
+ * @export
+ */
+export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} id 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getById: async (url: string, id: string, fields?: string, hl?: 'ko' | 'en' | 'vi', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getById', 'url', url)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getById', 'id', id)
+            const localVarPath = `/{url}/{id}`
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+
+            if (hl !== undefined) {
+                localVarQueryParameter['hl'] = hl;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {string} [where] 
+         * @param {string} [limit] 
+         * @param {number} [page] 
+         * @param {string} [order] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getList: async (url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getList', 'url', url)
+            const localVarPath = `/{url}`
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+
+            if (where !== undefined) {
+                localVarQueryParameter['where'] = where;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (hl !== undefined) {
+                localVarQueryParameter['hl'] = hl;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DefaultApi - functional programming interface
+ * @export
+ */
+export const DefaultApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} id 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getById(url: string, id: string, fields?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefaultReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getById(url, id, fields, hl, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {string} [where] 
+         * @param {string} [limit] 
+         * @param {number} [page] 
+         * @param {string} [order] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefaultPagingReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getList(url, fields, where, limit, page, order, hl, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * DefaultApi - factory interface
+ * @export
+ */
+export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DefaultApiFp(configuration)
+    return {
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} id 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getById(url: string, id: string, fields?: string, hl?: 'ko' | 'en' | 'vi', options?: any): AxiosPromise<DefaultReponseSchema> {
+            return localVarFp.getById(url, id, fields, hl, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {string} [where] 
+         * @param {string} [limit] 
+         * @param {number} [page] 
+         * @param {string} [order] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: any): AxiosPromise<DefaultPagingReponseSchema> {
+            return localVarFp.getList(url, fields, where, limit, page, order, hl, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DefaultApi - interface
+ * @export
+ * @interface DefaultApi
+ */
+export interface DefaultApiInterface {
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} id 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getById(url: string, id: string, fields?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig): AxiosPromise<DefaultReponseSchema>;
+
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {string} [where] 
+     * @param {string} [limit] 
+     * @param {number} [page] 
+     * @param {string} [order] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig): AxiosPromise<DefaultPagingReponseSchema>;
+
+}
+
+/**
+ * DefaultApi - object-oriented interface
+ * @export
+ * @class DefaultApi
+ * @extends {BaseAPI}
+ */
+export class DefaultApi extends BaseAPI implements DefaultApiInterface {
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} id 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getById(url: string, id: string, fields?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getById(url, id, fields, hl, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {string} [where] 
+     * @param {string} [limit] 
+     * @param {number} [page] 
+     * @param {string} [order] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getList(url, fields, where, limit, page, order, hl, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -711,6 +1195,116 @@ export class ImageApi extends BaseAPI implements ImageApiInterface {
      */
     public uploadImage(files: Array<File>, options?: AxiosRequestConfig) {
         return ImageApiFp(this.configuration).uploadImage(files, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get list user api
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getListUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get list user api
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getListUser(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserPagingReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getListUser(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserApiFp(configuration)
+    return {
+        /**
+         * Get list user api
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getListUser(options?: any): AxiosPromise<UserPagingReponseSchema> {
+            return localVarFp.getListUser(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UserApi - interface
+ * @export
+ * @interface UserApi
+ */
+export interface UserApiInterface {
+    /**
+     * Get list user api
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApiInterface
+     */
+    getListUser(options?: AxiosRequestConfig): AxiosPromise<UserPagingReponseSchema>;
+
+}
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI implements UserApiInterface {
+    /**
+     * Get list user api
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getListUser(options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).getListUser(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
