@@ -182,81 +182,62 @@ export interface LoginResponseSchemaResults {
 export interface RegisterRequestSchema {
     /**
      * 
-     * @type {number}
-     * @memberof RegisterRequestSchema
-     */
-    'code'?: number;
-    /**
-     * 
-     * @type {RegisterRequestSchemaResults}
-     * @memberof RegisterRequestSchema
-     */
-    'results'?: RegisterRequestSchemaResults;
-}
-/**
- * 
- * @export
- * @interface RegisterRequestSchemaResults
- */
-export interface RegisterRequestSchemaResults {
-    /**
-     * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'username'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'password'?: string;
     /**
      * 
      * @type {number}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'dob'?: number;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
-    'gender'?: RegisterRequestSchemaResultsGenderEnum;
+    'gender'?: RegisterRequestSchemaGenderEnum;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'email'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'avatar'?: string;
     /**
      * 
      * @type {string}
-     * @memberof RegisterRequestSchemaResults
+     * @memberof RegisterRequestSchema
      */
     'phone'?: string;
 }
 
-export const RegisterRequestSchemaResultsGenderEnum = {
+export const RegisterRequestSchemaGenderEnum = {
     Male: 'MALE',
     Famle: 'FAMLE',
     Orther: 'ORTHER',
     Private: 'PRIVATE'
 } as const;
 
-export type RegisterRequestSchemaResultsGenderEnum = typeof RegisterRequestSchemaResultsGenderEnum[keyof typeof RegisterRequestSchemaResultsGenderEnum];
+export type RegisterRequestSchemaGenderEnum = typeof RegisterRequestSchemaGenderEnum[keyof typeof RegisterRequestSchemaGenderEnum];
 
 /**
  * 
@@ -540,6 +521,104 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Default api
          * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        create: async (url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('create', 'url', url)
+            const localVarPath = `/{url}`
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+
+            if (hl !== undefined) {
+                localVarQueryParameter['hl'] = hl;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Default api
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteById: async (id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deleteById', 'id', id)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('deleteById', 'url', url)
+            const localVarPath = `/{url}/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+
+            if (hl !== undefined) {
+                localVarQueryParameter['hl'] = hl;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Default api
+         * @param {string} url 
          * @param {string} id 
          * @param {string} [fields] 
          * @param {'ko' | 'en' | 'vi'} [hl] 
@@ -647,6 +726,57 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Default api update by id
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateById: async (id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateById', 'id', id)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('updateById', 'url', url)
+            const localVarPath = `/{url}/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+
+            if (hl !== undefined) {
+                localVarQueryParameter['hl'] = hl;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -657,6 +787,33 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async create(url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefaultReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.create(url, fields, hl, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Default api
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefaultReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteById(id, url, fields, hl, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
         /**
          * Default api
          * @param {string} url 
@@ -686,6 +843,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getList(url, fields, where, limit, page, order, hl, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Default api update by id
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefaultReponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateById(id, url, fields, hl, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -696,6 +867,31 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = DefaultApiFp(configuration)
     return {
+        /**
+         * Default api
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        create(url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: any): AxiosPromise<DefaultReponseSchema> {
+            return localVarFp.create(url, fields, hl, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Default api
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: any): AxiosPromise<DefaultReponseSchema> {
+            return localVarFp.deleteById(id, url, fields, hl, body, options).then((request) => request(axios, basePath));
+        },
         /**
          * Default api
          * @param {string} url 
@@ -723,6 +919,19 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: any): AxiosPromise<DefaultPagingReponseSchema> {
             return localVarFp.getList(url, fields, where, limit, page, order, hl, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Default api update by id
+         * @param {string} id 
+         * @param {string} url 
+         * @param {string} [fields] 
+         * @param {'ko' | 'en' | 'vi'} [hl] 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: any): AxiosPromise<DefaultReponseSchema> {
+            return localVarFp.updateById(id, url, fields, hl, body, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -732,6 +941,31 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  * @interface DefaultApi
  */
 export interface DefaultApiInterface {
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    create(url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): AxiosPromise<DefaultReponseSchema>;
+
+    /**
+     * Default api
+     * @param {string} id 
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): AxiosPromise<DefaultReponseSchema>;
+
     /**
      * Default api
      * @param {string} url 
@@ -759,6 +993,19 @@ export interface DefaultApiInterface {
      */
     getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig): AxiosPromise<DefaultPagingReponseSchema>;
 
+    /**
+     * Default api update by id
+     * @param {string} id 
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    updateById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig): AxiosPromise<DefaultReponseSchema>;
+
 }
 
 /**
@@ -768,6 +1015,35 @@ export interface DefaultApiInterface {
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI implements DefaultApiInterface {
+    /**
+     * Default api
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public create(url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).create(url, fields, hl, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Default api
+     * @param {string} id 
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public deleteById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).deleteById(id, url, fields, hl, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Default api
      * @param {string} url 
@@ -797,6 +1073,21 @@ export class DefaultApi extends BaseAPI implements DefaultApiInterface {
      */
     public getList(url: string, fields?: string, where?: string, limit?: string, page?: number, order?: string, hl?: 'ko' | 'en' | 'vi', options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getList(url, fields, where, limit, page, order, hl, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Default api update by id
+     * @param {string} id 
+     * @param {string} url 
+     * @param {string} [fields] 
+     * @param {'ko' | 'en' | 'vi'} [hl] 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public updateById(id: string, url: string, fields?: string, hl?: 'ko' | 'en' | 'vi', body?: any, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).updateById(id, url, fields, hl, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
